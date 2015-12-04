@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
     // MARK: Properties
     let defaultTopText = "TOP"
     let defaultBottomText = "BOTTOM"
@@ -39,7 +39,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let shareMenu = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         shareMenu.completionWithItemsHandler = {
             activitiyType, completed, returnedItems, activityError in
-            self.save()
+            self.save(memedImage)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         
@@ -98,7 +98,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func generateMemedImage() -> UIImage {
-        // TODO: Hide navbar
+        // Hide navbar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController?.setToolbarHidden(true, animated: false)
         
@@ -109,19 +109,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        // TODO: Show navbar
+        // Show navbar
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setToolbarHidden(false, animated: false)
         
         return memedImage
     }
     
-    func save() {
-        let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imageView.image, memedImage: generateMemedImage())
+    func save(memedImage: UIImage) {
+        let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imageView.image, memedImage: memedImage)
         savedMemes.append(meme)
     }
 
-    // MARK: UIImagePickerControllerDelegate
+    
+    
+}
+
+// MARK: UIImagePickerControllerDelegate
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
@@ -134,6 +140,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 }
 
+// MARK: UITextField Delegate
 extension ViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -151,7 +158,9 @@ extension ViewController: UITextFieldDelegate {
     
     // Move the view when the keyboard covers the text field
     func keyboardWillShow(notification: NSNotification) {
+        // only move view up if we're editing the bottom text field
         if bottomTextField.editing {
+            // only move the view up if it hasn't already been moved up
             if self.view.frame.origin.y == 0 {
                 self.view.frame.origin.y -= getKeyboardHeight(notification)
             }
@@ -161,6 +170,7 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        // only move the view down if it has previously been moved up
         if self.view.frame.origin.y < 0 {
             self.view.frame.origin.y += getKeyboardHeight(notification)
         }
