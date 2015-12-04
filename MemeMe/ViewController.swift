@@ -25,13 +25,13 @@ class ViewController: UIViewController {
     @IBAction func pickImageFromAlbum(sender: AnyObject) {
         let imagePicker = getImagePicker()
         imagePicker.sourceType = .PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
 
     @IBAction func pickImageFromCamera(sender: AnyObject) {
         let imagePicker = getImagePicker()
         imagePicker.sourceType = .Camera
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func shareMeme(sender: AnyObject) {
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        self.presentViewController(shareMenu, animated: true, completion: nil)
+        presentViewController(shareMenu, animated: true, completion: nil)
     }
     
     @IBAction func cancelMeme(sender: AnyObject) {
@@ -62,13 +62,13 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
-        self.shareButton.enabled = (imageView.image != nil)
-        self.subscribeToKeyboardNotifications()
+        shareButton.enabled = (imageView.image != nil)
+        subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
     
     // MARK: Custom methods
@@ -99,19 +99,19 @@ class ViewController: UIViewController {
     
     func generateMemedImage() -> UIImage {
         // Hide navbar
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationController?.setToolbarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setToolbarHidden(true, animated: false)
         
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         // Show navbar
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationController?.setToolbarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setToolbarHidden(false, animated: false)
         
         return memedImage
     }
@@ -132,11 +132,11 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
@@ -161,8 +161,8 @@ extension ViewController: UITextFieldDelegate {
         // only move view up if we're editing the bottom text field
         if bottomTextField.editing {
             // only move the view up if it hasn't already been moved up
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= getKeyboardHeight(notification)
+            if view.frame.origin.y == 0 {
+                view.frame.origin.y -= getKeyboardHeight(notification)
             }
         }
         
@@ -171,8 +171,8 @@ extension ViewController: UITextFieldDelegate {
     
     func keyboardWillHide(notification: NSNotification) {
         // only move the view down if it has previously been moved up
-        if self.view.frame.origin.y < 0 {
-            self.view.frame.origin.y += getKeyboardHeight(notification)
+        if view.frame.origin.y < 0 {
+            view.frame.origin.y += getKeyboardHeight(notification)
         }
         
     }
