@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     // MARK: Properties
     let defaultTopText = "TOP"
     let defaultBottomText = "BOTTOM"
-    var savedMemes = [Meme]()
+    //var savedMemes = [Meme]()
     
     // MARK: Outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -47,10 +47,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func cancelMeme(sender: AnyObject) {
-        topTextField.text = defaultTopText
-        bottomTextField.text = defaultBottomText
-        imageView.image = nil
-        shareButton.enabled = false
+        self.navigationController?.popToRootViewControllerAnimated(true)
+//        topTextField.text = defaultTopText
+//        bottomTextField.text = defaultBottomText
+//        imageView.image = nil
+//        shareButton.enabled = false
     }
     
     // MARK: View Controller Life Cycle
@@ -64,11 +65,13 @@ class ViewController: UIViewController {
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         shareButton.enabled = (imageView.image != nil)
         subscribeToKeyboardNotifications()
+        self.navigationController?.toolbarHidden = false
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+        self.navigationController?.toolbarHidden = true
     }
     
     // MARK: Custom methods
@@ -118,7 +121,10 @@ class ViewController: UIViewController {
     
     func save(memedImage: UIImage) {
         let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imageView.image, memedImage: memedImage)
-        savedMemes.append(meme)
+        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            appDelegate.memes.append(meme)
+        }
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 
     
