@@ -138,14 +138,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3vC-pE-Ahu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="0.11478570103645325" green="0.11775105446577072" blue="0.11470898240804672" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="3vC-pE-Ahu" secondAttribute="height" multiplier="1:1" id="UoB-9u-ZYh"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lsA-Zn-UPi">
                                                     <rect key="frame" x="88" y="0.0" width="224" height="40"/>
                                                     <animations/>
@@ -160,27 +152,33 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GeS-lA-c5Y">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="GeS-lA-c5Y" secondAttribute="height" multiplier="1:1" id="zgT-Vq-iza"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="3vC-pE-Ahu" secondAttribute="bottom" id="1SX-Qr-PEQ"/>
                                                 <constraint firstItem="lsA-Zn-UPi" firstAttribute="top" secondItem="CAj-SV-XfF" secondAttribute="top" id="5Bg-3X-uLv"/>
+                                                <constraint firstItem="GeS-lA-c5Y" firstAttribute="leading" secondItem="CAj-SV-XfF" secondAttribute="leading" id="HlS-gE-tfG"/>
                                                 <constraint firstItem="lsA-Zn-UPi" firstAttribute="height" secondItem="CAj-SV-XfF" secondAttribute="height" multiplier="0.5" id="KNq-Jl-7Bd"/>
-                                                <constraint firstItem="zWb-R7-WAF" firstAttribute="leading" secondItem="3vC-pE-Ahu" secondAttribute="trailing" constant="8" id="Uf0-XX-Xvw"/>
                                                 <constraint firstAttribute="bottom" secondItem="zWb-R7-WAF" secondAttribute="bottom" id="Ydz-Nx-ycn"/>
                                                 <constraint firstAttribute="trailing" secondItem="lsA-Zn-UPi" secondAttribute="trailing" constant="8" id="dOI-Bb-gDf"/>
                                                 <constraint firstItem="zWb-R7-WAF" firstAttribute="height" secondItem="lsA-Zn-UPi" secondAttribute="height" id="fLN-S9-aAj"/>
-                                                <constraint firstItem="3vC-pE-Ahu" firstAttribute="top" secondItem="CAj-SV-XfF" secondAttribute="top" id="hA9-Go-F8S"/>
-                                                <constraint firstItem="3vC-pE-Ahu" firstAttribute="leading" secondItem="CAj-SV-XfF" secondAttribute="leading" id="tuG-fB-bbq"/>
-                                                <constraint firstItem="lsA-Zn-UPi" firstAttribute="leading" secondItem="3vC-pE-Ahu" secondAttribute="trailing" constant="8" id="ulI-RX-lab"/>
+                                                <constraint firstAttribute="bottom" secondItem="GeS-lA-c5Y" secondAttribute="bottom" id="fbi-U1-wf6"/>
+                                                <constraint firstItem="lsA-Zn-UPi" firstAttribute="leading" secondItem="GeS-lA-c5Y" secondAttribute="trailing" constant="8" id="gPd-TU-dEs"/>
+                                                <constraint firstItem="GeS-lA-c5Y" firstAttribute="top" secondItem="CAj-SV-XfF" secondAttribute="top" id="o63-HU-SHL"/>
                                                 <constraint firstAttribute="trailing" secondItem="zWb-R7-WAF" secondAttribute="trailing" constant="8" id="wgD-0S-Xxr"/>
+                                                <constraint firstItem="zWb-R7-WAF" firstAttribute="leading" secondItem="GeS-lA-c5Y" secondAttribute="trailing" constant="8" id="x89-bI-7cc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
                                             <outlet property="bottomTextLabel" destination="zWb-R7-WAF" id="ZXL-7W-yfu"/>
-                                            <outlet property="imageView" destination="3vC-pE-Ahu" id="egK-QN-B3y"/>
-                                            <outlet property="memeImageView" destination="3vC-pE-Ahu" id="WwY-8d-t1x"/>
+                                            <outlet property="memeImageView" destination="GeS-lA-c5Y" id="Igb-NW-cs6"/>
                                             <outlet property="topTextLabel" destination="lsA-Zn-UPi" id="gh8-aa-r14"/>
                                         </connections>
                                     </tableViewCell>
