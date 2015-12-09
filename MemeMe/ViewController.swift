@@ -48,10 +48,6 @@ class ViewController: UIViewController {
     
     @IBAction func cancelMeme(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
-//        topTextField.text = defaultTopText
-//        bottomTextField.text = defaultBottomText
-//        imageView.image = nil
-//        shareButton.enabled = false
     }
     
     // MARK: View Controller Life Cycle

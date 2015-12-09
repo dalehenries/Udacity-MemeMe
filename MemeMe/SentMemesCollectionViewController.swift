@@ -24,7 +24,7 @@ class SentMemesCollectionViewController: BaseSentMemesViewController, UICollecti
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.collectionView.reloadData()
+        collectionView.reloadData()
     }
     
     // MARK: Custom Methods
@@ -32,9 +32,13 @@ class SentMemesCollectionViewController: BaseSentMemesViewController, UICollecti
         let space: CGFloat = 3.0
         // 3 items along the short side and 5 along the long side.
         let dimension = size.width < size.height ? (size.width - (2 * space)) / 3.0 : (size.width - (4 * space)) / 5.0
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        // fixes crash when rotate right after launch.
+        if flowLayout != nil {
+            flowLayout.minimumInteritemSpacing = space
+            flowLayout.minimumLineSpacing = space
+            flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        }
+        
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

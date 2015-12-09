@@ -20,7 +20,7 @@ class SentMemesTableViewController: BaseSentMemesViewController, UITableViewData
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     // MARK: UITableViewDataSource Implementation
@@ -30,10 +30,13 @@ class SentMemesTableViewController: BaseSentMemesViewController, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableViewCell") {
+        if let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableViewCell") as? MemeTableViewCell {
             let meme = memes[indexPath.row]
-            cell.textLabel?.text = meme.topText
-            cell.imageView?.image = meme.memedImage
+            cell.populateCell(meme)
+//            cell.textLabel?.text = meme.topText
+//            cell.detailTextLabel?.text = meme.bottomText
+//            cell.imageView?.image = meme.memedImage
+//            cell.imageView?.contentMode = .ScaleAspectFit
             return cell
         } else {
             return UITableViewCell()
@@ -45,6 +48,10 @@ class SentMemesTableViewController: BaseSentMemesViewController, UITableViewData
             controller.meme = memes[indexPath.row]
             navigationController?.pushViewController(controller, animated: true)
         }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80.0
     }
 }
 

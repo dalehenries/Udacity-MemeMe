@@ -18,6 +18,7 @@
 		5EE3F5661C109B5500029761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EE3F5651C109B5500029761 /* Assets.xcassets */; };
 		5EE3F5691C109B5500029761 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EE3F5671C109B5500029761 /* LaunchScreen.storyboard */; };
 		5EE3F5711C10BD8D00029761 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE3F5701C10BD8D00029761 /* Meme.swift */; };
+		5EEFDC851C18A9C800F4257A /* MemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEFDC841C18A9C800F4257A /* MemeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		5EE3F5681C109B5500029761 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EE3F56A1C109B5500029761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EE3F5701C10BD8D00029761 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		5EEFDC841C18A9C800F4257A /* MemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				5E28E5EF1C16095700A66A40 /* MemeCollectionViewCell.swift */,
 				5E28E5F31C161C5D00A66A40 /* BaseSentMemesViewController.swift */,
 				5E28E5F51C161C8B00A66A40 /* MemeDetailViewController.swift */,
+				5EEFDC841C18A9C800F4257A /* MemeTableViewCell.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				5EE3F5711C10BD8D00029761 /* Meme.swift in Sources */,
 				5E28E5EC1C15FF6800A66A40 /* SentMemesTableViewController.swift in Sources */,
 				5EE3F5611C109B5500029761 /* ViewController.swift in Sources */,
+				5EEFDC851C18A9C800F4257A /* MemeTableViewCell.swift in Sources */,
 				5EE3F55F1C109B5500029761 /* AppDelegate.swift in Sources */,
 				5E28E5F61C161C8B00A66A40 /* MemeDetailViewController.swift in Sources */,
 			);

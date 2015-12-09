@@ -18,7 +18,6 @@ class MemeCollectionViewCell: UICollectionViewCell {
     }
     
     func populateCell(meme: Meme) {
-        //self.backgroundView = UIImageView(image: meme.memedImage)
         imageView.image = meme.memedImage
     }
 
