@@ -33,10 +33,6 @@ class SentMemesTableViewController: BaseSentMemesViewController, UITableViewData
         if let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableViewCell") as? MemeTableViewCell {
             let meme = memes[indexPath.row]
             cell.populateCell(meme)
-//            cell.textLabel?.text = meme.topText
-//            cell.detailTextLabel?.text = meme.bottomText
-//            cell.imageView?.image = meme.memedImage
-//            cell.imageView?.contentMode = .ScaleAspectFit
             return cell
         } else {
             return UITableViewCell()
@@ -52,6 +48,13 @@ class SentMemesTableViewController: BaseSentMemesViewController, UITableViewData
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80.0
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
     }
 }
 
