@@ -17,6 +17,7 @@ class MemeTableViewCell: UITableViewCell {
     
     func populateCell(meme: Meme) {
         memeImageView.image = meme.memedImage
+        memeImageView.contentMode = .ScaleToFill
         topTextLabel.text = meme.topText
         bottomTextLabel.text = meme.bottomText
     }

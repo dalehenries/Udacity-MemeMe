@@ -54,9 +54,7 @@ class SentMemesCollectionViewController: BaseSentMemesViewController, UICollecti
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MemeCollectionViewCell", forIndexPath: indexPath) as? MemeCollectionViewCell {
             let meme = memes[indexPath.row]
-            // TODO: add image to cell
             cell.populateCell(meme)
-            
             return cell
         } else {
             return UICollectionViewCell()
@@ -67,6 +65,7 @@ class SentMemesCollectionViewController: BaseSentMemesViewController, UICollecti
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let controller = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as? MemeDetailViewController {
             controller.meme = memes[indexPath.row]
+            controller.memeIndex = indexPath.row
             navigationController?.pushViewController(controller, animated: true)
         }
     }

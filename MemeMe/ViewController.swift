@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     // MARK: Properties
     let defaultTopText = "TOP"
     let defaultBottomText = "BOTTOM"
-    //var savedMemes = [Meme]()
+    var previousMemeVersion: Meme?
+    var previousMemeIndex: Int?
     
     // MARK: Outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -54,6 +55,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextFields()
+        if let meme = previousMemeVersion {
+            setupWithPreviousMeme(meme)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -96,6 +100,12 @@ class ViewController: UIViewController {
         bottomTextField.defaultTextAttributes = memeTextAttributes
     }
     
+    func setupWithPreviousMeme(meme: Meme) {
+        imageView.image = meme.originalImage
+        topTextField.text = meme.topText
+        bottomTextField.text = meme.bottomText
+    }
+    
     func generateMemedImage() -> UIImage {
         // Hide navbar
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -118,7 +128,12 @@ class ViewController: UIViewController {
     func save(memedImage: UIImage) {
         let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, originalImage: imageView.image, memedImage: memedImage)
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-            appDelegate.memes.append(meme)
+            if let index = previousMemeIndex {
+                appDelegate.memes[index] = meme
+            } else {
+                appDelegate.memes.append(meme)
+            }
+            
         }
         self.navigationController?.popToRootViewControllerAnimated(true)
     }

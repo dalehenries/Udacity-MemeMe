@@ -14,10 +14,23 @@ class MemeDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var meme: Meme!
+    var memeIndex: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = meme.memedImage
+        
+        let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: "editMeme")
+        self.navigationItem.rightBarButtonItem = editButton
+    }
+    
+    func editMeme() {
+        if let controller = self.storyboard!.instantiateViewControllerWithIdentifier("NewMemeViewController") as? ViewController {
+            controller.previousMemeVersion = meme
+            controller.previousMemeIndex = memeIndex
+            
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
 }
