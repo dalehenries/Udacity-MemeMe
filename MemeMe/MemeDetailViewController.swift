@@ -3,7 +3,7 @@
 //  MemeMe
 //
 //  Created by Dale Henries on 12/7/15.
-//  Copyright © 2015 Samaritan's Purse. All rights reserved.
+//  Copyright © 2015 Dale Henries. All rights reserved.
 //
 
 import UIKit
